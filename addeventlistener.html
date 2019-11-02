@@ -6,17 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-<script>
-var foo = function(){
-    alert("foo");
-}
-
-
-</script> 
-    
 </head>
 <body>
-    <div class="box" onclick="foo()"></div>
+    <div class="box"></div>
 </body>
 
 <style>
@@ -26,4 +18,14 @@ var foo = function(){
     background-color: red;
 }
 </style>
+
+<script>
+        var box = document.querySelector(".box");
+        
+        box.addEventListener("click", function() {
+            alert("foo");
+        }, false);
+        
+        </script> 
+            
 </html>
