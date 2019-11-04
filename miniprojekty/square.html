@@ -46,8 +46,20 @@
         
         var create = document.createElement('div');
         create.textContent = number;
+
+        if (number%5 == 0 ) {
+            create.classList.add('circle');
+
+
+
+
+        }
+            
+
+
+
         document.body.appendChild(create);
-        number = number + 1;
+        number++;
 
     };
 
