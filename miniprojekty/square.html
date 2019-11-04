@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    button{
+        display: block;
+        margin: 10px auto;
+    }
+    
+    div {
+        height: 30px;
+        width: 30px;
+        background-color: black;
+       display: inline-block;
+       text-align: center;
+       margin-left: 100px;
+       color: white;
+       line-height: 30px;
+    }
+
+    .circle {
+        background-color: red;
+        border-radius: 50%;
+    }
+    
+    </style>
+</head>
+<body>
+
+<button type="submit">Utwórz element</button>
+
+
+
+
+<script>
+
+    var click = document.querySelector('button');
+    var number = 1;
+
+    var newdiv = function(){
+
+        
+        var create = document.createElement('div');
+        create.textContent = number;
+        document.body.appendChild(create);
+        number = number + 1;
+
+    };
+
+
+
+
+
+    click.addEventListener("click", newdiv);
+
+
+
+</script>
+</body>
+
+
+
+</html>
