@@ -38,6 +38,7 @@ const ch = canvas.height;
 
 const solidWidth = 2;
 const solidHeight = 6;
+
    
 
 
@@ -45,26 +46,41 @@ function table(){
     ctx.fillStyle = 'black';
     ctx.fillRect (0,0, cw, ch);
 
-   
-    for ()
+ 
+for (let positionSolid = 20; positionSolid < ch; positionSolid += 30){
 
+
+        ctx.fillStyle = 'gray';
+        ctx.fillRect (cw / 2 - solidWidth /2, positionSolid, solidWidth, solidHeight);
+    };
  }
 
- table();
-
-  
 const ballSize = 20;
 let ballX = cw / 2 - ballSize / 2;
 let ballY =  ch / 2 - ballSize / 2;
+
+let ballSpeedX= 1;
+let ballSpeedY= 1;
 
     
 function ball(){
 ctx.fillStyle = 'white';
 ctx.fillRect (ballX, ballY, ballSize, ballSize);
+
+
+ballX += ballSpeedX;
+ballY += ballSpeedY;
+
+if (ballY <= 0 || ballY + ballSize >= ch) {
+    ballSpeedY = -ballSpeedY;
 }
 
-ball();
+if (ballX <= 0 || ballX + ballSize >= cw) {
+    ballSpeedX = -ballSpeedX;
+}
 
+
+}
     
 const paddleHeight = 100;
 const paddleWidth = 20;
@@ -75,14 +91,59 @@ const aiX = 910
 let playerY = 200;
 let aiY = 200;
 
-function paddles(){
+function paddlePlayer(){
     ctx.fillStyle= 'green';
-    ctx.fillRect (playerX, playerY, paddleWidth, paddleHeight);
+    ctx.fillRect (playerX, playerY, paddleWidth, paddleHeight)};
+
+function paddleAi(){    
     ctx.fillStyle= 'yellow';
     ctx.fillRect (aiX, aiY, paddleWidth, paddleHeight);
     }
 
-paddles();
+topCanvas = canvas.offsetTop;
+
+function positionMouse(even) {
+    console.log(even.clientY);
+    playerY = even.clientY - topCanvas - paddleHeight /2 ;
+
+    if (playerY >= ch - paddleHeight) {
+        playerY = ch - paddleHeight;
+    }
+
+    if (playerY <= 0) {
+        playerY = 0;
+    }
+
+
+}
+
+canvas.addEventListener('mousemove', positionMouse);
+
+
+
+
+
+
+
+
+
+
+
+function game() {   
+table();
+ball();
+paddlePlayer();
+paddleAi();
+};
+
+setInterval(game, 1000 / 60);
+
+
+
+
+
+
+
 
 
     
