@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PingPong Game</title>
+    <style>
+    body {
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: gray;
+    }
+
+    canvas {
+        border: white 1px solid;
+    }
+
+    </style>
+
+</head>
+<body>
+<canvas></canvas>
+
+
+<script>
+
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = 1000;
+canvas.height = 500;
+
+const cw = canvas.width;
+const ch = canvas.height;
+
+const solidWidth = 2;
+const solidHeight = 6;
+   
+
+
+function table(){
+    ctx.fillStyle = 'black';
+    ctx.fillRect (0,0, cw, ch);
+
+   
+    for ()
+
+ }
+
+ table();
+
+  
+const ballSize = 20;
+let ballX = cw / 2 - ballSize / 2;
+let ballY =  ch / 2 - ballSize / 2;
+
+    
+function ball(){
+ctx.fillStyle = 'white';
+ctx.fillRect (ballX, ballY, ballSize, ballSize);
+}
+
+ball();
+
+    
+const paddleHeight = 100;
+const paddleWidth = 20;
+
+const playerX = 70;
+const aiX = 910
+
+let playerY = 200;
+let aiY = 200;
+
+function paddles(){
+    ctx.fillStyle= 'green';
+    ctx.fillRect (playerX, playerY, paddleWidth, paddleHeight);
+    ctx.fillStyle= 'yellow';
+    ctx.fillRect (aiX, aiY, paddleWidth, paddleHeight);
+    }
+
+paddles();
+
+
+    
+</script>
+
+</body>
+</html>
