@@ -73,10 +73,14 @@ ballY += ballSpeedY;
 
 if (ballY <= 0 || ballY + ballSize >= ch) {
     ballSpeedY = -ballSpeedY;
+    speedUp();
 }
+
+
 
 if (ballX <= 0 || ballX + ballSize >= cw) {
     ballSpeedX = -ballSpeedX;
+    speedUp();
 }
 
 
@@ -103,7 +107,7 @@ function paddleAi(){
 topCanvas = canvas.offsetTop;
 
 function positionMouse(even) {
-    console.log(even.clientY);
+  
     playerY = even.clientY - topCanvas - paddleHeight /2 ;
 
     if (playerY >= ch - paddleHeight) {
@@ -113,20 +117,81 @@ function positionMouse(even) {
     if (playerY <= 0) {
         playerY = 0;
     }
-
-
 }
 
 canvas.addEventListener('mousemove', positionMouse);
 
+function speedUp(){
+
+    if (ballSpeedX > 0 && ballSpeedX < 8) {
+        ballSpeedX += 2;
+    } 
+    else if (ballSpeedX < 0 && ballSpeedX > 8) {
+        ballSpeedX -= 2;
+    } 
+
+    else if (ballSpeedY > 0 && ballSpeedY < 8) {
+        ballSpeedY += 2;
+    } 
+    else if (ballSpeedY < 0 && ballSpeedY > 8) {
+        ballSpeedY -= 2;
+    } 
+}
 
 
+    /*-----------SZTUCZNA INTELIGENCJA----------*/
 
+    function aiPosition() {
+      //Funckja wywyoływana przez funkcję game() (czyli 60 razy na sekundę w naszym wypadku) Celem funkcji jest ustalić pozycję rakietki, któr póżniej jest rysowana przez funkcję ai(). 
+      // to jest tylko prosta wariacja, która korzysta z dwóch elementów: pozycji piłki oraz położenia rakietki oraz relacji między nimi. Sami mozecie sobie zaprogramować bardziej skomplikowany mechanizm który wykorzysta także np. prędkość piłki, poziom trudności, czas trwania gry (czym dłuzej tym inaczej zachowuje sie AI). Kombinujcie.
+      const middlePaddle= aiY + paddleHeight / 2 ;
+      //aiY + paddelHeight / 2 - zawsze oznacza współrzedne srodka wysokości rakietki. Za każdym uruchomieniem funkcji pobiera oczywiście aktualne wartości.
+      const middleBall = ballY + ballSize / 2;
+      //ballY + ballSize/2 - aktualne współrzędne piłki (środka wysokości) na canvas.
+      
+      if (ballX > 500) { //czyli piłka będzie znajdowała się po prawej stronie canvas (canvas od 0 do 1000 czyli w tym wypadku obszar większy od 500 do 1000)
+        
+        //Warunek 1 - środek piłki odległy o więcej niż 200px od środka rakietki
+        if (middlePaddle - middleBall > 200) {
+         
 
+          aiY -= 24; //ruch rakietki w stronę piłki (wartość określa "prędkość") Zmniejszamy na osi Y odległość między piłką a rakietką.
+          
+          //Jeśli warunek nie jest spełniony sprawdzamy czy spełniony jest drugi określony w else if. Jesli spełniony jest pierwszy drugi nie jest wykonany.
+        } else if (middlePaddle - middleBall > 50) {
+          aiY -= 10;
+        }
+        //Bardzo podobny warunek, sprawdzamy tylko czy środek piłki nie jest bliżej srodka rakietki Jesli odległość mniejsza (równa) 50px od środka to nic nie rób. Jeśli jest większy od 50px (i w domyśle mniejsza równa 200), to dokonaj przemieszczenie o -6px czyli w stronę piłki.
 
+        
+                //TO SAMO CO WYŻEJ TYLKO W DRUGĄ STRONĘ (PIŁKA JEST POD RAKIETKĄ)
+        else if (middlePaddle - middleBall < -200) {
+          aiY += 24;
+        } else if (middlePaddle - middleBall < -50) {
+          aiY += 10;
+        }
+       }
+      
+     //GDY PIŁKI JAST w ODLEGLOŚCI WIĘKSZEJ NIZ 100 i MNIEJSZEJ RÓWNEJ 500 OD LEWEJ KRAWĘDZI (lewa strona boiska)  
+      if (ballX <= 500 && ballX > 100) {
+        if (middlePaddle - middleBall > 100) {
+          aiY -= 3;
+        } 
+ if (middlePaddle - middleBall < -100) {
+          aiY += 3;
+        }
+      }
+  
+      //gdy próbuje wyjachać rakietka na dole poza canvas
+      if (aiY >= ch - paddleHeight) {
+        aiY = ch - paddleHeight
+      }
 
-
-
+      //gdy próbuje wyjachać rakietka na górze poza canvas
+      if (aiY <= 0) {
+        aiY = 0;
+      }
+    }
 
 
 function game() {   
@@ -134,6 +199,7 @@ table();
 ball();
 paddlePlayer();
 paddleAi();
+aiPosition()
 };
 
 setInterval(game, 1000 / 60);
