@@ -25,7 +25,7 @@ const image = document.querySelector('img.slider');
 const h1 = document.querySelector('h1.slider');
 const dots = [...document.querySelectorAll('.dots span')]
 // Interfejs
-const time = 3000;
+let time = 3000;
 let active = 0;
 
 // Implementacje
@@ -45,7 +45,16 @@ const changeSlide = () => {
  h1.textContent = slideList[active].text;
  changeDot()
 }
-setInterval(changeSlide, time)
+setInterval(changeSlide, time);
+
+const keyChangeSlide = function(){
+    
+    changeSlide();
+    time = 0;
+ 
+    
+
+}
 
 
 // utwórz funkcje keyChangeSlide. Zadanie może wymagać także zmian poza funkcją.
