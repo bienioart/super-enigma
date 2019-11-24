@@ -19,15 +19,13 @@ const addLetter = () => {
 const interval = setInterval(function(){
     spnText.innerHTML += txt[indexTable][indexTekst];
     indexTekst++;
-if (indexTekst === txt[indexTable].length) clearInterval(interval);
-
-}
-    , 100);
-
-
-
+if (indexTekst === txt[indexTable].length) clearInterval(interval);}, 100);;
  // Użyj w środku setTimeout
 }
+
+if (clearInterval){
+        console.log('dziala')
+    };
 
 
 addLetter(); //pierwsze wywołanie
