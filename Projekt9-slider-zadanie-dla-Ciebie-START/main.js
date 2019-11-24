@@ -51,11 +51,7 @@ const keyChangeSlide = function(){
     
     changeSlide();
     time = 0;
- 
-    
-
 }
-
 
 // utwórz funkcje keyChangeSlide. Zadanie może wymagać także zmian poza funkcją.
 window.addEventListener('keydown', keyChangeSlide)
