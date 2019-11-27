@@ -7,10 +7,13 @@ const diver = document.querySelector('body > div > div');
 let hours = 0;
 let minutes = 0;
 let seconds = 0;
+let active = false;
 
 
 
 function actionStart() {
+
+    if (active){
     setTimeout(actionStart, 1000);
     diver.innerHTML = hours + ":" + minutes + ":" + seconds;
     seconds++;
@@ -23,6 +26,10 @@ function actionStart() {
         minutes = 0;
     }
 }
+};
+    else {
+        clearTimeout();
+    }
 
 
 
@@ -32,6 +39,7 @@ function actionReset() {
     hours = 0;
     minutes = 0;
     seconds = 0;
+    active = false;
 }
 
 
