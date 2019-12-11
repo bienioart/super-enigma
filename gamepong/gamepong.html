@@ -1,142 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PingPong Game</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PingPong Game</title>
+  <style>
     body {
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        background-color: gray;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: gray;
     }
 
     canvas {
-        border: white 1px solid;
+      border: white 1px solid;
     }
-
-    </style>
+  </style>
 
 </head>
+
 <body>
-<canvas></canvas>
+  <canvas></canvas>
 
 
-<script>
+  <script>
+    const canvas = document.querySelector('canvas');
+    const ctx = canvas.getContext('2d');
 
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
+    canvas.width = 1000;
+    canvas.height = 500;
 
-canvas.width = 1000;
-canvas.height = 500;
+    const cw = canvas.width;
+    const ch = canvas.height;
 
-const cw = canvas.width;
-const ch = canvas.height;
-
-const solidWidth = 2;
-const solidHeight = 6;
-
-   
+    const solidWidth = 2;
+    const solidHeight = 6;
 
 
-function table(){
-    ctx.fillStyle = 'black';
-    ctx.fillRect (0,0, cw, ch);
 
- 
-for (let positionSolid = 20; positionSolid < ch; positionSolid += 30){
+
+    function table() {
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, cw, ch);
+
+
+      for (let positionSolid = 20; positionSolid < ch; positionSolid += 30) {
 
 
         ctx.fillStyle = 'gray';
-        ctx.fillRect (cw / 2 - solidWidth /2, positionSolid, solidWidth, solidHeight);
+        ctx.fillRect(cw / 2 - solidWidth / 2, positionSolid, solidWidth, solidHeight);
+      };
+    }
+
+    const ballSize = 20;
+    let ballX = cw / 2 - ballSize / 2;
+    let ballY = ch / 2 - ballSize / 2;
+
+    let ballSpeedX = 1;
+    let ballSpeedY = 1;
+
+
+    function ball() {
+      ctx.fillStyle = 'white';
+      ctx.fillRect(ballX, ballY, ballSize, ballSize);
+
+
+      ballX += ballSpeedX;
+      ballY += ballSpeedY;
+
+      if (ballY <= 0 || ballY + ballSize >= ch) {
+        ballSpeedY = -ballSpeedY;
+        speedUp();
+      }
+
+
+
+      if (ballX <= 0 || ballX + ballSize >= cw) {
+        ballSpeedX = -ballSpeedX;
+        speedUp();
+      }
+
+
+    }
+
+    const paddleHeight = 100;
+    const paddleWidth = 20;
+
+    const playerX = 70;
+    const aiX = 910
+
+    let playerY = 200;
+    let aiY = 200;
+
+    function paddlePlayer() {
+      ctx.fillStyle = 'green';
+      ctx.fillRect(playerX, playerY, paddleWidth, paddleHeight)
     };
- }
 
-const ballSize = 20;
-let ballX = cw / 2 - ballSize / 2;
-let ballY =  ch / 2 - ballSize / 2;
-
-let ballSpeedX= 1;
-let ballSpeedY= 1;
-
-    
-function ball(){
-ctx.fillStyle = 'white';
-ctx.fillRect (ballX, ballY, ballSize, ballSize);
-
-
-ballX += ballSpeedX;
-ballY += ballSpeedY;
-
-if (ballY <= 0 || ballY + ballSize >= ch) {
-    ballSpeedY = -ballSpeedY;
-    speedUp();
-}
-
-
-
-if (ballX <= 0 || ballX + ballSize >= cw) {
-    ballSpeedX = -ballSpeedX;
-    speedUp();
-}
-
-
-}
-    
-const paddleHeight = 100;
-const paddleWidth = 20;
-
-const playerX = 70;
-const aiX = 910
-
-let playerY = 200;
-let aiY = 200;
-
-function paddlePlayer(){
-    ctx.fillStyle= 'green';
-    ctx.fillRect (playerX, playerY, paddleWidth, paddleHeight)};
-
-function paddleAi(){    
-    ctx.fillStyle= 'yellow';
-    ctx.fillRect (aiX, aiY, paddleWidth, paddleHeight);
+    function paddleAi() {
+      ctx.fillStyle = 'yellow';
+      ctx.fillRect(aiX, aiY, paddleWidth, paddleHeight);
     }
 
-topCanvas = canvas.offsetTop;
+    topCanvas = canvas.offsetTop;
 
-function positionMouse(even) {
-  
-    playerY = even.clientY - topCanvas - paddleHeight /2 ;
+    function positionMouse(even) {
 
-    if (playerY >= ch - paddleHeight) {
+      playerY = even.clientY - topCanvas - paddleHeight / 2;
+
+      if (playerY >= ch - paddleHeight) {
         playerY = ch - paddleHeight;
-    }
+      }
 
-    if (playerY <= 0) {
+      if (playerY <= 0) {
         playerY = 0;
+      }
     }
-}
 
-canvas.addEventListener('mousemove', positionMouse);
+    canvas.addEventListener('mousemove', positionMouse);
 
-function speedUp(){
+    function speedUp() {
 
-    if (ballSpeedX > 0 && ballSpeedX < 8) {
+      if (ballSpeedX > 0 && ballSpeedX < 8) {
         ballSpeedX += 2;
-    } 
-    else if (ballSpeedX < 0 && ballSpeedX > 8) {
+      } else if (ballSpeedX < 0 && ballSpeedX > 8) {
         ballSpeedX -= 2;
-    } 
-
-    else if (ballSpeedY > 0 && ballSpeedY < 8) {
+      } else if (ballSpeedY > 0 && ballSpeedY < 8) {
         ballSpeedY += 2;
-    } 
-    else if (ballSpeedY < 0 && ballSpeedY > 8) {
+      } else if (ballSpeedY < 0 && ballSpeedY > 8) {
         ballSpeedY -= 2;
-    } 
-}
+      }
+    }
 
 
     /*-----------SZTUCZNA INTELIGENCJA----------*/
@@ -144,44 +141,46 @@ function speedUp(){
     function aiPosition() {
       //Funckja wywyoływana przez funkcję game() (czyli 60 razy na sekundę w naszym wypadku) Celem funkcji jest ustalić pozycję rakietki, któr póżniej jest rysowana przez funkcję ai(). 
       // to jest tylko prosta wariacja, która korzysta z dwóch elementów: pozycji piłki oraz położenia rakietki oraz relacji między nimi. Sami mozecie sobie zaprogramować bardziej skomplikowany mechanizm który wykorzysta także np. prędkość piłki, poziom trudności, czas trwania gry (czym dłuzej tym inaczej zachowuje sie AI). Kombinujcie.
-      const middlePaddle= aiY + paddleHeight / 2 ;
+      const middlePaddle = aiY + paddleHeight / 2;
       //aiY + paddelHeight / 2 - zawsze oznacza współrzedne srodka wysokości rakietki. Za każdym uruchomieniem funkcji pobiera oczywiście aktualne wartości.
       const middleBall = ballY + ballSize / 2;
       //ballY + ballSize/2 - aktualne współrzędne piłki (środka wysokości) na canvas.
-      
-      if (ballX > 500) { //czyli piłka będzie znajdowała się po prawej stronie canvas (canvas od 0 do 1000 czyli w tym wypadku obszar większy od 500 do 1000)
-        
+
+      if (ballX >
+        500) { //czyli piłka będzie znajdowała się po prawej stronie canvas (canvas od 0 do 1000 czyli w tym wypadku obszar większy od 500 do 1000)
+
         //Warunek 1 - środek piłki odległy o więcej niż 200px od środka rakietki
         if (middlePaddle - middleBall > 200) {
-         
 
-          aiY -= 24; //ruch rakietki w stronę piłki (wartość określa "prędkość") Zmniejszamy na osi Y odległość między piłką a rakietką.
-          
+
+          aiY -=
+          24; //ruch rakietki w stronę piłki (wartość określa "prędkość") Zmniejszamy na osi Y odległość między piłką a rakietką.
+
           //Jeśli warunek nie jest spełniony sprawdzamy czy spełniony jest drugi określony w else if. Jesli spełniony jest pierwszy drugi nie jest wykonany.
         } else if (middlePaddle - middleBall > 50) {
           aiY -= 10;
         }
         //Bardzo podobny warunek, sprawdzamy tylko czy środek piłki nie jest bliżej srodka rakietki Jesli odległość mniejsza (równa) 50px od środka to nic nie rób. Jeśli jest większy od 50px (i w domyśle mniejsza równa 200), to dokonaj przemieszczenie o -6px czyli w stronę piłki.
 
-        
-                //TO SAMO CO WYŻEJ TYLKO W DRUGĄ STRONĘ (PIŁKA JEST POD RAKIETKĄ)
+
+        //TO SAMO CO WYŻEJ TYLKO W DRUGĄ STRONĘ (PIŁKA JEST POD RAKIETKĄ)
         else if (middlePaddle - middleBall < -200) {
           aiY += 24;
         } else if (middlePaddle - middleBall < -50) {
           aiY += 10;
         }
-       }
-      
-     //GDY PIŁKI JAST w ODLEGLOŚCI WIĘKSZEJ NIZ 100 i MNIEJSZEJ RÓWNEJ 500 OD LEWEJ KRAWĘDZI (lewa strona boiska)  
+      }
+
+      //GDY PIŁKI JAST w ODLEGLOŚCI WIĘKSZEJ NIZ 100 i MNIEJSZEJ RÓWNEJ 500 OD LEWEJ KRAWĘDZI (lewa strona boiska)  
       if (ballX <= 500 && ballX > 100) {
         if (middlePaddle - middleBall > 100) {
           aiY -= 3;
-        } 
- if (middlePaddle - middleBall < -100) {
+        }
+        if (middlePaddle - middleBall < -100) {
           aiY += 3;
         }
       }
-  
+
       //gdy próbuje wyjachać rakietka na dole poza canvas
       if (aiY >= ch - paddleHeight) {
         aiY = ch - paddleHeight
@@ -194,26 +193,17 @@ function speedUp(){
     }
 
 
-function game() {   
-table();
-ball();
-paddlePlayer();
-paddleAi();
-aiPosition()
-};
+    function game() {
+      table();
+      ball();
+      paddlePlayer();
+      paddleAi();
+      aiPosition()
+    };
 
-setInterval(game, 1000 / 60);
-
-
-
-
-
-
-
-
-
-    
-</script>
+    setInterval(game, 1000 / 60);
+  </script>
 
 </body>
+
 </html>
