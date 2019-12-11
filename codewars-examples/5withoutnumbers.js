@@ -5,6 +5,6 @@
 // Good luck :)
 
 function unusualFive() {
-    let ar = ['a','b','c','d','e'];
-    return ar.length;
-  }
+  let ar = ['a', 'b', 'c', 'd', 'e'];
+  return ar.length;
+}

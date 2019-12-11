@@ -7,7 +7,7 @@ const names = ["Jagienka", "Dobrawa (Dobrusia)", "Daria", "Asia", "Kira", "Marys
 
 const prefixs = ["Wydaje mi się", "Mam wrażenie", "Myślę że", "Szczerze uważam", "Na 100% twierdzę", "Jestem pewien"];
 
-function start(){
+function start() {
     const indexPrefixs = Math.floor(Math.random() * prefixs.length);
     const indexNames = Math.floor(Math.random() * names.length);
 
