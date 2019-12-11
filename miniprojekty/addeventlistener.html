@@ -1,5 +1,8 @@
+<!-- Zadanie ma na celu wyświetlić alert: "foo" -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +10,24 @@
     <title>Document</title>
 
 </head>
+
 <body>
     <div class="box"></div>
 </body>
 
 <style>
-.box{
-    width: 100px;
-    height: 100px;
-    background-color: red;
-}
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
 </style>
 
 <script>
-        var box = document.querySelector(".box");
-        
-        box.addEventListener("click", function() {
-            alert("foo");
-        }, false);
-        
-        </script> 
-            
+    var box = document.querySelector(".box");
+    box.addEventListener("click", function () {
+        alert("foo");
+    }, false);
+</script>
+
 </html>
