@@ -24,8 +24,6 @@
 
 <body>
   <canvas></canvas>
-
-
   <script>
     const canvas = document.querySelector('canvas');
     const ctx = canvas.getContext('2d');
@@ -39,16 +37,11 @@
     const solidWidth = 2;
     const solidHeight = 6;
 
-
-
-
     function table() {
       ctx.fillStyle = 'black';
       ctx.fillRect(0, 0, cw, ch);
 
-
       for (let positionSolid = 20; positionSolid < ch; positionSolid += 30) {
-
 
         ctx.fillStyle = 'gray';
         ctx.fillRect(cw / 2 - solidWidth / 2, positionSolid, solidWidth, solidHeight);
@@ -67,7 +60,6 @@
       ctx.fillStyle = 'white';
       ctx.fillRect(ballX, ballY, ballSize, ballSize);
 
-
       ballX += ballSpeedX;
       ballY += ballSpeedY;
 
@@ -76,14 +68,10 @@
         speedUp();
       }
 
-
-
       if (ballX <= 0 || ballX + ballSize >= cw) {
         ballSpeedX = -ballSpeedX;
         speedUp();
       }
-
-
     }
 
     const paddleHeight = 100;
@@ -135,35 +123,21 @@
       }
     }
 
-
-    /*-----------SZTUCZNA INTELIGENCJA----------*/
-
     function aiPosition() {
-      //Funckja wywyoływana przez funkcję game() (czyli 60 razy na sekundę w naszym wypadku) Celem funkcji jest ustalić pozycję rakietki, któr póżniej jest rysowana przez funkcję ai(). 
-      // to jest tylko prosta wariacja, która korzysta z dwóch elementów: pozycji piłki oraz położenia rakietki oraz relacji między nimi. Sami mozecie sobie zaprogramować bardziej skomplikowany mechanizm który wykorzysta także np. prędkość piłki, poziom trudności, czas trwania gry (czym dłuzej tym inaczej zachowuje sie AI). Kombinujcie.
+  
       const middlePaddle = aiY + paddleHeight / 2;
-      //aiY + paddelHeight / 2 - zawsze oznacza współrzedne srodka wysokości rakietki. Za każdym uruchomieniem funkcji pobiera oczywiście aktualne wartości.
       const middleBall = ballY + ballSize / 2;
-      //ballY + ballSize/2 - aktualne współrzędne piłki (środka wysokości) na canvas.
 
       if (ballX >
-        500) { //czyli piłka będzie znajdowała się po prawej stronie canvas (canvas od 0 do 1000 czyli w tym wypadku obszar większy od 500 do 1000)
-
-        //Warunek 1 - środek piłki odległy o więcej niż 200px od środka rakietki
+        500) {
         if (middlePaddle - middleBall > 200) {
-
-
           aiY -=
-          24; //ruch rakietki w stronę piłki (wartość określa "prędkość") Zmniejszamy na osi Y odległość między piłką a rakietką.
+          24;
 
-          //Jeśli warunek nie jest spełniony sprawdzamy czy spełniony jest drugi określony w else if. Jesli spełniony jest pierwszy drugi nie jest wykonany.
         } else if (middlePaddle - middleBall > 50) {
           aiY -= 10;
         }
-        //Bardzo podobny warunek, sprawdzamy tylko czy środek piłki nie jest bliżej srodka rakietki Jesli odległość mniejsza (równa) 50px od środka to nic nie rób. Jeśli jest większy od 50px (i w domyśle mniejsza równa 200), to dokonaj przemieszczenie o -6px czyli w stronę piłki.
 
-
-        //TO SAMO CO WYŻEJ TYLKO W DRUGĄ STRONĘ (PIŁKA JEST POD RAKIETKĄ)
         else if (middlePaddle - middleBall < -200) {
           aiY += 24;
         } else if (middlePaddle - middleBall < -50) {
@@ -171,7 +145,6 @@
         }
       }
 
-      //GDY PIŁKI JAST w ODLEGLOŚCI WIĘKSZEJ NIZ 100 i MNIEJSZEJ RÓWNEJ 500 OD LEWEJ KRAWĘDZI (lewa strona boiska)  
       if (ballX <= 500 && ballX > 100) {
         if (middlePaddle - middleBall > 100) {
           aiY -= 3;
@@ -181,17 +154,22 @@
         }
       }
 
-      //gdy próbuje wyjachać rakietka na dole poza canvas
       if (aiY >= ch - paddleHeight) {
         aiY = ch - paddleHeight
       }
 
-      //gdy próbuje wyjachać rakietka na górze poza canvas
       if (aiY <= 0) {
         aiY = 0;
       }
     }
 
+    // odbicie pileczki  
+
+    function reflection(){
+      if ((ballX = playerX = 70 + paddleWidth) & (ballY = paddleHeight)) {
+      ballX + ballSize >= cw
+    }
+    }
 
     function game() {
       table();
@@ -199,8 +177,8 @@
       paddlePlayer();
       paddleAi();
       aiPosition()
+      reflection()
     };
-
     setInterval(game, 1000 / 60);
   </script>
 
