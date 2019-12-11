@@ -72,8 +72,9 @@
         ballSpeedX = -ballSpeedX;
         speedUp();
       }
-    }
 
+   
+   }
     const paddleHeight = 100;
     const paddleWidth = 20;
 
@@ -163,13 +164,6 @@
       }
     }
 
-    // odbicie pileczki  
-
-    function reflection(){
-      if ((ballX = playerX = 70 + paddleWidth) & (ballY = paddleHeight)) {
-      ballX + ballSize >= cw
-    }
-    }
 
     function game() {
       table();
@@ -177,9 +171,24 @@
       paddlePlayer();
       paddleAi();
       aiPosition()
-      reflection()
+      reflectionPlayer();
+      reflectionAi();
+
     };
     setInterval(game, 1000 / 60);
+
+    function reflectionPlayer() {
+      if (ballX <= playerX + paddleWidth && ballY >= playerY && ballY <= playerY + paddleHeight) {
+      ballSpeedX = -ballSpeedX;
+      }}
+
+      function reflectionAi() {
+        if (ballX >= aiX && ballY >= aiY && ballY <= aiY + paddleHeight) {
+      ballSpeedX = -ballSpeedX;
+      speedUp();
+      }}
+
+
   </script>
 
 </body>
