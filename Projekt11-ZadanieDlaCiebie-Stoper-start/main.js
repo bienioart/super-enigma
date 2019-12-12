@@ -1,5 +1,3 @@
-// http://websamuraj.pl/examples/js/projekt11/
-
 const start = document.querySelector('.main');
 const reset = document.querySelector('.reset');
 let timer = new Date();
@@ -10,27 +8,27 @@ let seconds = 0;
 let active = false;
 
 
-
 function actionStart() {
 
-    if (active){
-    setTimeout(actionStart, 1000);
-    diver.innerHTML = hours + ":" + minutes + ":" + seconds;
-    seconds++;
-    if (seconds >= 60) {
-        minutes++;
-        seconds = 0;
-    }
-    if (minutes >= 60) {
-        hours++;
-        minutes = 0;
-    }
-}
-};
-    // else {
-    //     clearTimeout();
-    // }
+    active = true;
+    start.classList.add('show');
 
+    if (active) {
+        setTimeout(actionStart, 1000);
+        diver.innerHTML = hours + ":" + minutes + ":" + seconds;
+        seconds++;
+        if (seconds >= 60) {
+            minutes++;
+            seconds = 0;
+        }
+        if (minutes >= 60) {
+            hours++;
+            minutes = 0;
+        }
+    } else {
+        clearTimeout();
+    }
+};
 
 
 function actionReset() {
@@ -41,10 +39,6 @@ function actionReset() {
     seconds = 0;
     active = false;
 }
-
-
-
-
 
 
 start.addEventListener('click', actionStart);
