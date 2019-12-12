@@ -1,60 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>We are looking for You!</title>
     <style>
-    body {
-        background-color: #666666;
-      
-    }
+        body {
+            background-color: #666666;
+        }
 
-    .container {
-        
-        display: flex;
-        height: 99vh;
-        justify-content: center;
-        align-items: center;
-        flex-flow: column;
-    }
+        .container {
 
-    input {
-      
-        width: 600px;
-        height: 40px;
-        font-size: 40px;
-        
-    }
+            display: flex;
+            height: 99vh;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+        }
 
-    button {
-        margin-top: 40px;
-        background-color: #ffffff;
-        border: 2px black solid;
-        width: 400px;
-        height: 160px;
-        font-size: 140px;
-    }
+        input {
 
-    button:hover {
-        background-color:#ff0000;
-        border: 2px #ffffff solid;
-        color: #ffffff
-        
-    }
-    
-    
-    
+            width: 600px;
+            height: 40px;
+            font-size: 40px;
+        }
+
+        button {
+            margin-top: 40px;
+            background-color: #ffffff;
+            border: 2px black solid;
+            width: 400px;
+            height: 160px;
+            font-size: 140px;
+        }
+
+        button:hover {
+            background-color: #ff0000;
+            border: 2px #ffffff solid;
+            color: #ffffff
+        }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-<input type="text">
-<button class=>GO!</button>
-</div>
+    <div class="container">
+        <input type="text">
+        <button class=>GO!</button>
+    </div>
 
-    
+    <!--     
+Opiszę aplikację od strony użytkownika, przy pomocy use-caseów.
+
+1. Aplikację uruchamiam w przeglądarce internetowej. Jest to one-page app tj. nie ma przejść między stronami.
+2. Po wejściu wyświetla się duży input na tekst i przycisk "GO!"
+3. Wpisuje słowa kluczowe, związane z muzyką np. dobry rap
+4. Po wciśnięciu GO! odpytujesz YouTube API (normalny search ze wprowadzonymi słowami kluczowymi). Dbasz o to, aby materiały nie były długie tylko miały do 6 minut (wyławiasz klipy wideo)
+5. Zapamiętujesz filmy które zwróciło YouTube API w pamięci i zaczynasz projekcję filmów kolejno jeden po drugim
+6. Filmy wyswietlasz full screen HD w max  jakosci, wypelniajac cala szerokość canvasu przeglądarki. Jeśli możliwe, chowasz wszystkie kontrolki i paski postępu.
+7. Jeśli możliwe, na 20s zanim skończy się materiał, nakładasz tekst na obraz gdzieś pod spodem albo u góry z informacją "COMING NEXT: <tytul>" tak żebym wiedział, że za chwilę poleci kolejny klip o tej nazwie
+8. Jeśli bufor klipów jest pusty, lub brakuje klipów, wyświetlasz duży czerwony komunikat "SEARCH AGAIN!" i pozwracasz do 2.
+
+Technicznie będzie trochę zabawy z komunikacją API po http. Poczytaj o REST API. To naprawdę proste. Reszta to kodowanie zdarzeń JS. Także myślę, że fajny task! -->
+
 </body>
+
 </html>
