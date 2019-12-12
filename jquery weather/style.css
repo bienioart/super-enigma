@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow Condensed', sans-serif;
+    color: #ffffff;
+}
+
+body {
+height: 100vh;
+width: 100vw;
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+background-image: linear-gradient(#16b8e9, #0077ff);
+font-size: 32px;
+/* text-transform: uppercase; */
+}
+
+i {
+font-size: 64px;
+margin: 0 20px 0 20px;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30vh;
+    width: 60%;
+}
+
+.temperature{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 20vh;
+    width: 60%;
+}
+
+.temperature-degree {
+cursor: pointer;
+}
