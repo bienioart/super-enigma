@@ -8,21 +8,13 @@ pole.addEventListener('input', (e) => {
     if (haslo === e.target.value) {
 
         tekst.textContent = wiadomosc;
-        e.target.value = '';}
-    
-        
-        
-    else{
+        e.target.value = '';
+    } else {
 
         tekst.textContent = "Wpisz poprawne haslo aby uzyskac dostep";
     }
-    
-
 })
 
-
-
-
-pole.addEventListener('focus', ()=> {
+pole.addEventListener('focus', () => {
     pole.classList.add('active');
 })

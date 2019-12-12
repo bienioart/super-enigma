@@ -27,9 +27,9 @@ function actionStart() {
     }
 }
 };
-    else {
-        clearTimeout();
-    }
+    // else {
+    //     clearTimeout();
+    // }
 
 
 

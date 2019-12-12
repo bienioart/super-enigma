@@ -1,79 +1,53 @@
+<!-- Po kliknięciu na przycisk wyświetlają się kwadraty, co 5 posiada kształt koła oraz inny kolor -->
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    button{
-        display: block;
-        margin: 10px auto;
-    }
-    
-    div {
-        height: 30px;
-        width: 30px;
-        background-color: black;
-       display: inline-block;
-       text-align: center;
-       margin-left: 100px;
-       color: white;
-       line-height: 30px;
-    }
-
-    .circle {
-        background-color: red;
-        border-radius: 50%;
-    }
-    
+        button {
+            display: block;
+            margin: 10px auto;
+        }
+        div {
+            height: 30px;
+            width: 30px;
+            background-color: black;
+            display: inline-block;
+            text-align: center;
+            margin-left: 100px;
+            color: white;
+            line-height: 30px;
+        }
+        .circle {
+            background-color: red;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
 
-<button type="submit">Utwórz element</button>
+    <button type="submit">Utwórz element</button>
+    <script>
+        var click = document.querySelector('button');
+        var number = 1;
+        var newdiv = function () {
+            var create = document.createElement('div');
+            create.textContent = number;
 
+            if (number % 5 == 0) {
+                create.classList.add('circle');
+            }
 
+            document.body.appendChild(create);
+            number++;
+        };
 
-
-<script>
-
-    var click = document.querySelector('button');
-    var number = 1;
-
-    var newdiv = function(){
-
-        
-        var create = document.createElement('div');
-        create.textContent = number;
-
-        if (number%5 == 0 ) {
-            create.classList.add('circle');
-
-
-
-
-        }
-            
-
-
-
-        document.body.appendChild(create);
-        number++;
-
-    };
-
-
-
-
-
-    click.addEventListener("click", newdiv);
-
-
-
-</script>
+        click.addEventListener("click", newdiv);
+    </script>
 </body>
-
-
-
 </html>

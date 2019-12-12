@@ -16,23 +16,21 @@ let indexTekst = 0;
 // Implementacja
 const addLetter = () => {
 
-const interval = setInterval(function(){
-    spnText.innerHTML += txt[indexTable][indexTekst];
-    indexTekst++;
-if (indexTekst === txt[indexTable].length) clearInterval(interval);}, 100);;
- // Użyj w środku setTimeout
+    const interval = setInterval(function () {
+        spnText.innerHTML += txt[indexTable][indexTekst];
+        indexTekst++;
+        if (indexTekst === txt[indexTable].length) clearInterval(interval);
+    }, 100);;
+    // Użyj w środku setTimeout
 }
 
-if (clearInterval){
-        console.log('dziala')
-    };
-
+if (clearInterval) {
+    console.log('dziala')
+};
 
 addLetter(); //pierwsze wywołanie
 
-
-// Animacja kursora (zostaw bez zmian)
 const cursorAnimation = () => {
- spnCursor.classList.toggle('active');
+    spnCursor.classList.toggle('active');
 }
 setInterval(cursorAnimation, 400);

@@ -1,4 +1,3 @@
-
 const h1 = document.querySelector('h1');
 document.body.addEventListener('mousemove', (e) => {
   h1.innerHTML = (e.screenX) + "," + (e.screenY);
@@ -8,4 +7,3 @@ document.body.addEventListener('mousemove', (e) => {
   // wstrzykiwanie ważne nie używać " " tylko ````` !!!!!  ` $ {}. oraz wiadome funkcja strzałkowa i e jako event. event pobiera wlasciwosci z js.
 
 })
-
