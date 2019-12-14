@@ -33,8 +33,9 @@ $(function () {
                 const timezone = data.timezone;
                 zone.text(timezone);
 
-                // temperatureDegree.on('click', celcius => {
-                    temperatureDegree.text((Math.floor(5 / 9 * (temperature) - 32 ))+ " C");
+                // temperatureDegree.on('click', () => {
+                    temperatureDegree.text(Math.floor(5 / 9 * (temperature) - 32 ));
+                    
 
 
             })
