@@ -34,10 +34,14 @@ margin: 0 20px 0 20px;
 .temperature{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
+    justify-content: center;
+    flex-direction: row;
     height: 20vh;
     width: 60%;
+}
+
+.temperature-span {
+    margin-left: 10px;
 }
 
 .temperature-degree {

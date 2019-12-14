@@ -1,6 +1,7 @@
 let temperatureDegree = $('h1.temperature-degree');
 let temperatureDescription = $('div.temperature-description');
 let zone = $('h1.location-timezone');
+let span = $('h1.temperature-span')
 
 $(function () {
             let long;
@@ -26,15 +27,14 @@ $(function () {
                 .then(data => {
                 console.log(data);
                 const { temperature, summary } = data.currently;
-                temperatureDegree.text(Math.floor(temperature) + " F");
+                temperatureDegree.text(Math.floor(temperature));
+                span.text("F");
                 temperatureDescription.text(summary);
                 const timezone = data.timezone;
                 zone.text(timezone);
 
-                temperatureDegree.on('click', celcius => {
+                // temperatureDegree.on('click', celcius => {
                     temperatureDegree.text((Math.floor(5 / 9 * (temperature) - 32 ))+ " C");
-                    
-                })
 
 
             })
